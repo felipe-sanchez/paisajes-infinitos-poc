@@ -1,0 +1,40 @@
+<style>
+:root {
+    --velocidad: 3600s;
+}
+
+  * {
+  margin: 0;
+}
+
+#bar {
+  height: 100vh;
+  width: 100%;
+  background: #000000 0 0 url('./final.png') repeat-x;
+  animation: scroll var(--velocidad) linear infinite;
+}
+
+@keyframes scroll {
+  from {background-position: 0 0;}
+  to {background-position: -20923px  0;}
+}
+</style>
+<div style='background-color: black'>
+  <input type="range" min="10" max="3600" value="50" class="slider" id="myRange">
+</div>
+<div id="bar"></div>
+
+<script>
+	function cssVar(name,value){
+	    if(name[0]!='-') name = '--'+name;
+	    if(value) document.documentElement.style.setProperty(name, value);
+	    return getComputedStyle(document.documentElement).getPropertyValue(name);
+	}
+
+        var slider = document.getElementById("myRange");
+	slider.oninput = function() {
+			console.log(slider.value);
+            cssVar('velocidad', slider.value + 's');
+	}
+</script>
+
